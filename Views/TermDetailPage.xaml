@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="C971.Views.TermDetailPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:models="clr-namespace:C971.Models"
+    Title="TERM DETAILS"
+    Shell.NavBarIsVisible="True">
+
+    <Grid RowDefinitions="*,Auto,Auto">
+        <ScrollView Grid.Row="0">
+            <VerticalStackLayout Padding="20" Spacing="10">
+                <Label Text="TERM:" FontAttributes="Bold" TextColor="White"/>
+                <Entry x:Name="TermTitle" Placeholder="Enter Term Title..." TextColor="White"/>
+                <Label Text="START DATE:" FontAttributes="Bold" TextColor="White"/>
+                <DatePicker x:Name="StartDate"/>
+                <Label Text="END DATE:" FontAttributes="Bold" TextColor="White"/>
+                <DatePicker x:Name="EndDate"/>
+
+                <Label Text="COURSES:" FontAttributes="Bold" TextColor="White"/>
+                <CollectionView x:Name="CoursesCollection" VerticalOptions="FillAndExpand">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="models:Course">
+                            <Border Stroke="White" StrokeThickness="1" BackgroundColor="Transparent" Padding="5" Margin="0,2">
+                                <Grid ColumnDefinitions="*,Auto,Auto" Padding="0">
+                                    <Label Grid.Column="0" TextColor="White" VerticalOptions="Center" Text="{Binding Title}"/>
+                                    <Button Grid.Column="1"
+                                            Text="EDIT"
+                                            TextColor="White"
+                                            BackgroundColor="Transparent"
+                                            CommandParameter="{Binding CourseId}"
+                                            Clicked="OnEditCourseClicked"/>
+                                    <Button Grid.Column="2"
+                                            Text="DELETE"
+                                            TextColor="White"
+                                            BackgroundColor="Transparent"
+                                            CommandParameter="{Binding CourseId}"
+                                            Clicked="OnDeleteCourseClicked"/>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                <Button Text="ADD COURSE +"
+                        HorizontalOptions="Center"
+                        BackgroundColor="#512BD4"
+                        TextColor="White"
+                        FontSize="Medium"
+                        Clicked="OnAddCourseClicked"/>
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <HorizontalStackLayout Grid.Row="1"
+                               HorizontalOptions="Center"
+                               Padding="0,10"
+                               Spacing="20">
+            <Button x:Name="SaveTermButton"
+                    Text="SAVE"
+                    BackgroundColor="#512BD4"
+                    TextColor="White"
+                    FontSize="Medium"
+                    Clicked="OnSaveTermClicked"/>
+            <Button x:Name="DeleteTermButton"
+                    Text="DELETE"
+                    BackgroundColor="#512BD4"
+                    TextColor="White"
+                    FontSize="Medium"
+                    Clicked="OnDeleteTermClicked"/>
+            <Button x:Name="CancelTermButton"
+                    Text="CANCEL"
+                    BackgroundColor="#512BD4"
+                    TextColor="White"
+                    FontSize="Medium"
+                    Clicked="OnCancelTermClicked"/>
+        </HorizontalStackLayout>
+
+        <Grid Grid.Row="2"
+              ColumnDefinitions="*,*"
+              Padding="15,5"
+              BackgroundColor="Transparent">
+            <Button Grid.Column="0"
+                    Text="TERMS"
+                    TextColor="White"
+                    FontSize="Medium"
+                    BackgroundColor="Transparent"
+                    HorizontalOptions="Start"
+                    Clicked="OnFooterTermsClicked"/>
+            <Button Grid.Column="1"
+                    Text="COURSES"
+                    TextColor="White"
+                    FontSize="Medium"
+                    BackgroundColor="Transparent"
+                    HorizontalOptions="End"
+                    Clicked="OnFooterCoursesClicked"/>
+        </Grid>
+    </Grid>
+</ContentPage>

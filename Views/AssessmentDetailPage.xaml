@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="C971.Views.AssessmentDetailPage"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Title="ASSESSMENT DETAILS"
+             Shell.NavBarIsVisible="True">
+
+    <Grid RowDefinitions="*,Auto,Auto">
+        <ScrollView Grid.Row="0">
+            <VerticalStackLayout Padding="20" 
+                                 Spacing="10">
+
+                <Label Text="ASSESSMENT DETAILS" 
+                       FontAttributes="Bold" 
+                       TextColor="White"/>
+
+                <Label Text="NAME:" 
+                       FontAttributes="Bold" 
+                       TextColor="White"/>
+                <Entry x:Name="AssessmentTitle"  
+                       TextColor="White" 
+                       Placeholder="Enter Assessment Name"/>
+
+                <Label Text="ASSESSMENT TYPE:" 
+                       FontAttributes="Bold" 
+                       TextColor="White"/>
+                <Picker x:Name="TypePicker"  
+                        TextColor="White">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>OBJECTIVE</x:String>
+                            <x:String>PERFORMANCE</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+
+                <Label Text="START DATE:" 
+                       FontAttributes="Bold" 
+                       TextColor="White"/>
+                <DatePicker x:Name="StartDatePicker"/>
+
+                <Label Text="START TIME:" 
+                       FontAttributes="Bold" 
+                       TextColor="White"/>
+                <TimePicker x:Name="StartTimePicker"/>
+
+                <Label Text="END DATE:" 
+                       FontAttributes="Bold" 
+                       TextColor="White"/>
+                <DatePicker x:Name="EndDatePicker"/>
+
+                <Label Text="END TIME:" 
+                       FontAttributes="Bold" 
+                       TextColor="White"/>
+                <TimePicker x:Name="EndTimePicker"/>
+
+                <HorizontalStackLayout Spacing="10" 
+                                       VerticalOptions="Center">
+                    <Label Text="🔔" 
+                           FontSize="20" 
+                           VerticalOptions="Center"/>
+                    <CheckBox x:Name="NotificationsCheckBox" 
+                              VerticalOptions="Center" IsChecked="False"/>
+                    <Label Text="Enable Notifications for Start &amp; End Dates" 
+                           VerticalOptions="Center" 
+                           TextColor="White"/>
+                </HorizontalStackLayout>
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <HorizontalStackLayout Grid.Row="1" 
+                               HorizontalOptions="Center" 
+                               Padding="0,10" 
+                               Spacing="20">
+            <Button Text="SAVE" 
+                    BackgroundColor="#512BD4" 
+                    TextColor="White" 
+                    FontSize="Medium" Clicked="OnSaveClicked"/>
+            <Button Text="DELETE" 
+                    BackgroundColor="#512BD4" 
+                    TextColor="White" 
+                    FontSize="Medium" 
+                    Clicked="OnDeleteClicked"/>
+            <Button Text="CANCEL" 
+                    BackgroundColor="#512BD4" 
+                    TextColor="White" 
+                    FontSize="Medium" 
+                    Clicked="OnCancelClicked"/>
+        </HorizontalStackLayout>
+
+        <Grid Grid.Row="2" 
+              ColumnDefinitions="*,*" 
+              Padding="15,5" 
+              BackgroundColor="Transparent">
+            <Button Grid.Column="0" 
+                    Text="TERMS" 
+                    TextColor="White" 
+                    FontSize="Medium" 
+                    BackgroundColor="Transparent" 
+                    HorizontalOptions="Start" 
+                    Clicked="OnFooterTermsClicked"/>
+            <Button Grid.Column="1" 
+                    Text="COURSES" 
+                    TextColor="White" 
+                    FontSize="Medium" 
+                    BackgroundColor="Transparent" 
+                    HorizontalOptions="End" 
+                    Clicked="OnFooterCoursesClicked"/>
+        </Grid>
+    </Grid>
+</ContentPage>

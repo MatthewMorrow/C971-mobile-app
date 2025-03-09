@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="C971.Views.TermsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:models="clr-namespace:C971.Models"
+    Title="TERM LIST"
+    Shell.NavBarIsVisible="True">
+    <Grid RowDefinitions="*,Auto">
+        <VerticalStackLayout Grid.Row="0" Padding="20" Spacing="10">
+            <Label x:Name="HeaderLabel"
+                   FontAttributes="Bold"
+                   FontSize="Medium"
+                   Text="TERMS:" />
+            <CollectionView x:Name="TermsCollection" VerticalOptions="Fill">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:Term">
+                        <Border
+                            Stroke="White"
+                            StrokeThickness="1"
+                            BackgroundColor="Transparent"
+                            Padding="5"
+                            Margin="0,2"
+                            HorizontalOptions="Fill">
+                            <Grid ColumnDefinitions="*,Auto,Auto" Padding="0">
+                                <Label Grid.Column="0"
+                                       Text="{Binding Title}"
+                                       FontAttributes="Bold"
+                                       FontSize="Large"
+                                       VerticalOptions="Center" />
+                                <Button Grid.Column="1"
+                                        Text="EDIT"
+                                        TextColor="White"
+                                        BackgroundColor="Transparent"
+                                        FontSize="Medium"
+                                        CommandParameter="{Binding TermId}"
+                                        Clicked="OnEditTermClicked" />
+                                <Button Grid.Column="2"
+                                        Text="DELETE"
+                                        TextColor="White"
+                                        BackgroundColor="Transparent"
+                                        FontSize="Medium"
+                                        CommandParameter="{Binding TermId}"
+                                        Clicked="OnDeleteTermClicked" />
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <Button Text="ADD TERM +"
+                    TextColor="White"
+                    FontSize="Medium"
+                    HorizontalOptions="Start"
+                    Clicked="OnAddTermClicked" />
+        </VerticalStackLayout>
+        <Grid Grid.Row="1" ColumnDefinitions="*,*" Padding="15,5" BackgroundColor="Transparent">
+            <Button Grid.Column="0"
+                    Text="TERMS"
+                    TextColor="White"
+                    FontSize="Medium"
+                    BackgroundColor="Transparent"
+                    HorizontalOptions="Start"
+                    Clicked="OnFooterTermsClicked" />
+            <Button Grid.Column="1"
+                    Text="COURSES"
+                    TextColor="White"
+                    FontSize="Medium"
+                    BackgroundColor="Transparent"
+                    HorizontalOptions="End"
+                    Clicked="OnFooterCoursesClicked" />
+        </Grid>
+    </Grid>
+</ContentPage>
